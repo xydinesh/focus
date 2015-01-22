@@ -36,6 +36,10 @@ class FocusModel(Base):
     motivation = Column(Integer, default=0)
     create_time = Column(DateTime, default=datetime.datetime.now(tz=pytz.timezone('EST')))
 
+    def __repr__(self):
+        return 'focus:{0} productivity:{1} energy:{2} motivation:{3} created: {4}'.format(self.focus,
+        self.productivity, self.energy, self.motivation, self.create_time)
+
 
 Index('my_index', MyModel.name, unique=True, mysql_length=255)
 Index('focus_ctime', FocusModel.create_time)

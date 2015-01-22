@@ -6,16 +6,34 @@ from sqlalchemy.exc import DBAPIError
 from .models import (
     DBSession,
     MyModel,
+    FocusModel,
     )
+
+from pyramid.httpexceptions import (
+exception_response,
+HTTPMethodNotAllowed,
+HTTPBadRequest,
+HTTPFound)
 
 class FocusView(object):
 
     def __init__(self, request):
         self.request = request
 
-    @view_config(route_name='focus')
+    @view_config(route_name='focus_save', renderer='templates/report_page.mako')
+    @view_config(route_name='focus', renderer='templates/report_page.mako')
     def focus_view(self):
-        pass
+        request = self.request
+        if request.method == 'POST':
+            focus = request.params.get('focus', 0)
+            productivity = request.params.get('productivity', 0)
+            motivation = request.params.get('motivation', '0')
+            energy = request.params.get('energy', 0)
+            fm = FocusModel(focus=focus, motivation=motivation, productivity=productivity, energy=energy)
+            DBSession.add(fm)
+            return HTTPFound(location='focus')
+        focus_values = FocusModel.query.all().limit(10)
+        return {'project': 'focus', 'values': focus_values}
 
 @view_config(route_name='home', renderer='templates/mytemplate.mako')
 def my_view(request):

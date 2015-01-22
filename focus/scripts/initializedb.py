@@ -38,5 +38,6 @@ def main(argv=sys.argv):
     Base.metadata.create_all(engine)
     with transaction.manager:
         model = MyModel(name='one', value=1)
-        model = FocusModel(focus=10, productivity=10, motivation=10, energy=9)
+        fmodel = FocusModel(focus=10, productivity=10, motivation=10, energy=9)
         DBSession.add(model)
+        DBSession.add(fmodel)
