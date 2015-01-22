@@ -2,8 +2,6 @@
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  color: #ffffff;
-  background: #bc2131;
 }
 h1,
 h2,
@@ -149,4 +147,48 @@ p {
   .starter-template .copyright {
     margin-top: 20px;
   }
+}
+
+#div_focus_table {
+  margin: 40px 50px;
+}
+
+#div_focus_table > table{
+  margin: 10px;
+  padding: 5px;
+}
+
+#div_items {
+  margin: 20px;
+  float: left;
+}
+
+#div_item > label {
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 40px;
+}
+
+#div_productivity {
+  float: left;
+  margin-right: 20px;
+}
+
+#div_focus {
+  float: left;
+  margin-right: 20px;
+}
+
+#div_motivation {
+  float: left;
+  margin-right: 20px;
+}
+
+#div_energy {
+  float: left;
+  margin-right: 20px;
+}
+
+#focus_submit {
+  aligh: right;
 }

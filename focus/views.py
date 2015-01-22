@@ -15,6 +15,9 @@ HTTPMethodNotAllowed,
 HTTPBadRequest,
 HTTPFound)
 
+import datetime
+import pytz
+
 class FocusView(object):
 
     def __init__(self, request):
@@ -29,7 +32,9 @@ class FocusView(object):
             productivity = request.params.get('productivity', 0)
             motivation = request.params.get('motivation', '0')
             energy = request.params.get('energy', 0)
-            fm = FocusModel(focus=focus, motivation=motivation, productivity=productivity, energy=energy)
+            create_time = datetime.datetime.now(tz=pytz.timezone('EST'))
+            fm = FocusModel(focus=focus, motivation=motivation,
+                            productivity=productivity, energy=energy, create_time=create_time)
             DBSession.add(fm)
             return HTTPFound(location='focus')
         focus_values = DBSession.query(FocusModel).order_by(FocusModel.create_time.desc()).limit(10)
