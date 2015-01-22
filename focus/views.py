@@ -32,7 +32,7 @@ class FocusView(object):
             fm = FocusModel(focus=focus, motivation=motivation, productivity=productivity, energy=energy)
             DBSession.add(fm)
             return HTTPFound(location='focus')
-        focus_values = FocusModel.query.all().limit(10)
+        focus_values = DBSession.query(FocusModel).order_by(FocusModel.create_time.desc()).limit(10)
         return {'project': 'focus', 'values': focus_values}
 
 @view_config(route_name='home', renderer='templates/mytemplate.mako')
