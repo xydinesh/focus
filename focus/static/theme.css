@@ -189,6 +189,12 @@ p {
   margin-right: 20px;
 }
 
-#focus_submit {
-  aligh: right;
+#div_submit {
+  float: left;
+  margin-right: 20px;
+}
+
+#div_form {
+  margin-right: 40px;
+  margin-left: 140px;
 }
