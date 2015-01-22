@@ -52,9 +52,11 @@ class TestFocusModel(unittest.TestCase):
         testing.tearDown()
 
     def test_focus_view(self):
-        from .views import my_view
+        from .views import FocusView
         request = testing.DummyRequest()
-        info = focus_view(request)
+        inst = FocusView(request)
+        info = inst.focus_view()
+        print (info)
 
 
 class TestMyViewFailureCondition(unittest.TestCase):

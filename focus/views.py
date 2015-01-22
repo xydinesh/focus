@@ -8,8 +8,16 @@ from .models import (
     MyModel,
     )
 
+class FocusView(object):
 
-@view_config(route_name='home', renderer='templates/mytemplate.pt')
+    def __init__(self, request):
+        self.request = request
+
+    @view_config(route_name='focus')
+    def focus_view(self):
+        pass
+
+@view_config(route_name='home', renderer='templates/mytemplate.mako')
 def my_view(request):
     try:
         one = DBSession.query(MyModel).filter(MyModel.name == 'one').first()
@@ -33,4 +41,3 @@ might be caused by one of the following things:
 After you fix the problem, please restart the Pyramid application to
 try it again.
 """
-
